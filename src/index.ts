@@ -29,13 +29,13 @@ function regroupChatLines(lines: ChatLine[]) {
 }
 
 function chatTimestampToDateTime(timestamp: number) {
-    let d = new Date()
-    let d2 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, timestamp)
-    if (d2 > new Date()) {
+    let now = new Date()
+    let result = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, timestamp)
+    if (result > now) {
         // Timestamp near midnight
-        d2.setDate(d2.getDate() - 1)
+        result.setDate(result.getDate() - 1)
     }
-    return d2
+    return result
 }
 
 function mixColor(color: number[]) {
