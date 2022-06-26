@@ -1,0 +1,52 @@
+html,
+body {
+    height: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table thead th {
+    border-bottom: 1px solid #666;
+}
+
+.header {
+    padding: 3px;
+    text-align: center;
+    background-color: #fff2;
+}
+
+.big-time {
+    font-size: large;
+    font-family: 'Cascadia Mono', 'Consolas', monospace;
+    color: #ff8;
+}
+
+#app {
+    display: grid;
+    grid-template-areas:
+        'start'
+        'current'
+        'main'
+        'footer';
+    grid-template-rows: auto auto 1fr auto;
+    height: 100%;
+    font-family: 'Noto Sans', 'Open Sans', sans-serif;
+}
+
+#output {
+    grid-area: main;
+    overflow: auto;
+    border: 1px solid #666;
+    padding: 6px;
+}
+
+#output>table {
+    width: 100%;
+    text-align: center;
+}
+
+#footer {
+    grid-area: footer;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://runeapps.org/nis/nis.css">
+    <link rel="stylesheet" type="text/css" href="https://runeapps.org/nis/alt1-currentskin/skinstyle.css">
+    <link rel="stylesheet" type="text/css" href="https://runeapps.org/runeappslib.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nis">
+    <div id="app">
+        <div class="header">
+            <div>Start time: {{ startTime.toLocaleTimeString() }}</div>
+            <div>Clue type: {{ capitalizeFirstLetter(clueType ?? "Not started") }}</div>
+            <div>
+                Current clue time:
+                <div class="big-time">{{ formatTime(currentClueTime) }}</div>
+            </div>
+        </div>
+
+        <div id="output">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Elapsed</th>
+                        <th>Clue time</th>
+                        <th>Clues/hr</th>
+                    </tr>
+                </thead>
+                <tr v-for="x in table">
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.elapsed }}</td>
+                    <td>{{ x.duration }}</td>
+                    <td>{{ x.rate }}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer">
+            <div class="nisbutton" @click="reset">New run</div>
+        </div>
+    </div>
+    <script src="./index.bundle.js"></script>
+</body>
+
+</html>
