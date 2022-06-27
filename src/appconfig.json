@@ -3,7 +3,7 @@
 	"description": "Alt1 clue split program",
 	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
-	"iconUrl": "",
+	"iconUrl": "./icon.png",
 	"defaultWidth": 250,
 	"defaultHeight": 250,
 	"requestHandlers": [],

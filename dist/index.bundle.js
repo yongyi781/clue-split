@@ -4114,6 +4114,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./icon.png":
+/*!****************************************************************************!*\
+  !*** ../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./icon.png ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "icon.png");
+
+/***/ }),
+
 /***/ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./index.html":
 /*!******************************************************************************!*\
   !*** ../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./index.html ***!
@@ -4424,6 +4439,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! !file-loader?name=[name].[ext]!./index.html */ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./index.html");
 __webpack_require__(/*! !file-loader?name=[name].[ext]!./appconfig.json */ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./appconfig.json");
 __webpack_require__(/*! !file-loader?name=[name].[ext]!./style.css */ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./style.css");
+__webpack_require__(/*! !file-loader?name=[name].[ext]!./icon.png */ "../node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./icon.png");
 // Puts timestampless chat lines with the previous chat line
 function regroupChatLines(lines) {
     let result = [];
@@ -4444,13 +4460,13 @@ function regroupChatLines(lines) {
     return result;
 }
 function chatTimestampToDateTime(timestamp) {
-    let d = new Date();
-    let d2 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, timestamp);
-    if (d2 > new Date()) {
+    let now = new Date();
+    let result = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, timestamp);
+    if (result > now) {
         // Timestamp near midnight
-        d2.setDate(d2.getDate() - 1);
+        result.setDate(result.getDate() - 1);
     }
-    return d2;
+    return result;
 }
 function mixColor(color) {
     return _alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(color[0], color[1], color[2], color[3]);

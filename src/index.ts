@@ -8,6 +8,7 @@ import { computed, createApp, onMounted, onUpdated, ref, watch } from "vue"
 require("!file-loader?name=[name].[ext]!./index.html")
 require("!file-loader?name=[name].[ext]!./appconfig.json")
 require("!file-loader?name=[name].[ext]!./style.css")
+require("!file-loader?name=[name].[ext]!./icon.png")
 
 // Puts timestampless chat lines with the previous chat line
 function regroupChatLines(lines: ChatLine[]) {
@@ -125,7 +126,6 @@ createApp({
                         }
                         if (clueType.value === match.groups.clueType) {
                             timestamps.value.push(timestamp)
-
                         }
                     }
                 }
