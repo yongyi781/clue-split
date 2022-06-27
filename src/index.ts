@@ -50,7 +50,7 @@ function formatTime(elapsed: number) {
 }
 
 function capitalizeFirstLetter(str : string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 a1lib.identifyApp("appconfig.json")
@@ -96,11 +96,6 @@ createApp({
             // Overlay the chatbox.
             alt1.overLayRect(a1lib.mixColor(255, 0, 128), rect.x, rect.y, rect.width, rect.height, 2000, 1)
             reset()
-            // timestamps.value = [
-            //     new Date(startTime.value.getTime() + 1),
-            //     new Date(startTime.value.getTime() + 2),
-            //     new Date(startTime.value.getTime() + 3000),
-            // ]
             setInterval(captureChat, 1200)
             setInterval(() => {
                 const lastClueTime = getLastClueTime()
@@ -126,6 +121,7 @@ createApp({
                         }
                         if (clueType.value === match.groups.clueType) {
                             timestamps.value.push(timestamp)
+                            currentClueTime.value = 0
                         }
                     }
                 }
@@ -135,7 +131,8 @@ createApp({
         function reset() {
             startTime.value = new Date(Math.round(Date.now() / 1000) * 1000)
             timestamps.value = []
-            clueType.value = null;
+            clueType.value = null
+            currentClueTime.value = 0
         }
 
         onMounted(() => {

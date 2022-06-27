@@ -23,6 +23,26 @@ table thead th {
     color: #ff8;
 }
 
+.easy {
+    color: #baaaba;
+}
+
+.medium {
+    color: #ffd26c;
+}
+
+.hard {
+    color: #fff8f7
+}
+
+.elite {
+    color: #fff951;
+}
+
+.master {
+    color: #66cef9;
+}
+
 #app {
     display: grid;
     grid-template-areas:

@@ -4516,11 +4516,6 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             // Overlay the chatbox.
             alt1.overLayRect(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(255, 0, 128), rect.x, rect.y, rect.width, rect.height, 2000, 1);
             reset();
-            // timestamps.value = [
-            //     new Date(startTime.value.getTime() + 1),
-            //     new Date(startTime.value.getTime() + 2),
-            //     new Date(startTime.value.getTime() + 3000),
-            // ]
             setInterval(captureChat, 1200);
             setInterval(() => {
                 const lastClueTime = getLastClueTime();
@@ -4543,6 +4538,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
                         }
                         if (clueType.value === match.groups.clueType) {
                             timestamps.value.push(timestamp);
+                            currentClueTime.value = 0;
                         }
                     }
                 }
@@ -4552,6 +4548,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             startTime.value = new Date(Math.round(Date.now() / 1000) * 1000);
             timestamps.value = [];
             clueType.value = null;
+            currentClueTime.value = 0;
         }
         (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(() => {
             setTimeout(init, 100);

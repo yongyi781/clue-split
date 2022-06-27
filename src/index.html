@@ -15,7 +15,7 @@
     <div id="app">
         <div class="header">
             <div>Start time: {{ startTime.toLocaleTimeString() }}</div>
-            <div>Clue type: {{ capitalizeFirstLetter(clueType ?? "Not started") }}</div>
+            <div>Clue type: <span :class="clueType">{{ capitalizeFirstLetter(clueType ?? "Not started") }}</span></div>
             <div>
                 Current clue time:
                 <div class="big-time">{{ formatTime(currentClueTime) }}</div>
