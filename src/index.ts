@@ -105,7 +105,7 @@ createApp({
             setInterval(() => {
                 const lastClueTime = getLastClueTime()
                 currentClueTime.value = Math.round((Date.now() - lastClueTime.getTime()) / 1000)
-            })
+            }, 1000)
         }
 
         function captureChat() {
