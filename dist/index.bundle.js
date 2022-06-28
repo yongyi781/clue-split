@@ -4520,7 +4520,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             setInterval(() => {
                 const lastClueTime = getLastClueTime();
                 currentClueTime.value = Math.round((Date.now() - lastClueTime.getTime()) / 1000);
-            }, 1000);
+            }, 500);
         }
         function captureChat() {
             let lines = reader.read();
@@ -4538,7 +4538,6 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
                         }
                         if (clueType.value === match.groups.clueType) {
                             timestamps.value.push(timestamp);
-                            currentClueTime.value = 0;
                         }
                     }
                 }

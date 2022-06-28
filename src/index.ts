@@ -100,7 +100,7 @@ createApp({
             setInterval(() => {
                 const lastClueTime = getLastClueTime()
                 currentClueTime.value = Math.round((Date.now() - lastClueTime.getTime()) / 1000)
-            }, 1000)
+            }, 500)
         }
 
         function captureChat() {
@@ -121,7 +121,6 @@ createApp({
                         }
                         if (clueType.value === match.groups.clueType) {
                             timestamps.value.push(timestamp)
-                            currentClueTime.value = 0
                         }
                     }
                 }
