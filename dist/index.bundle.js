@@ -4471,10 +4471,10 @@ function chatTimestampToDateTime(timestamp) {
 function mixColor(color) {
     return _alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(color[0], color[1], color[2], color[3]);
 }
-function formatTime(elapsed) {
+function formatTime(elapsed, useCsvTimeFormat = false) {
     const mins = Math.floor(elapsed / 60);
     const secs = elapsed % 60;
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
+    return useCsvTimeFormat ? `${Math.floor(mins / 60)}:${(mins % 60).toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}` : `${mins}:${secs.toString().padStart(2, "0")}`;
 }
 function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -4492,16 +4492,19 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
         const clueType = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
         const currentClueTime = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
         const timestamps = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-        const table = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(() => timestamps.value.map((t, i) => {
-            const elapsed = (t.getTime() - startTime.value.getTime()) / 1000;
-            const duration = i === 0 ? elapsed : (t.getTime() - timestamps.value[i - 1].getTime()) / 1000;
-            return {
-                id: i + 1,
-                elapsed: formatTime(elapsed),
-                duration: formatTime(duration),
-                rate: ((i + 1) * 3600 / elapsed).toFixed(1)
-            };
-        }));
+        const table = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(() => getTable(false));
+        function getTable(useCsvTimeFormat = false) {
+            return timestamps.value.map((t, i) => {
+                const elapsed = (t.getTime() - startTime.value.getTime()) / 1000;
+                const duration = i === 0 ? elapsed : (t.getTime() - timestamps.value[i - 1].getTime()) / 1000;
+                return {
+                    id: i + 1,
+                    elapsed: formatTime(elapsed, useCsvTimeFormat),
+                    duration: formatTime(duration, useCsvTimeFormat),
+                    rate: ((i + 1) * 3600 / elapsed).toFixed(1)
+                };
+            });
+        }
         function getLastClueTime() {
             return timestamps.value.length === 0 ? startTime.value : timestamps.value[timestamps.value.length - 1];
         }
@@ -4545,9 +4548,25 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
         }
         function reset() {
             startTime.value = new Date(Math.round(Date.now() / 1000) * 1000);
+            // Debugging
+            // timestamps.value = [new Date(startTime.value.getTime() + 3000), new Date(startTime.value.getTime() + 4000)]
             timestamps.value = [];
             clueType.value = null;
             currentClueTime.value = 0;
+        }
+        function exportCsv() {
+            const rows = [["#", "Elapsed", "Clue time", "Clues/hr"]].concat(getTable(true).map(x => [x.id.toString(), x.elapsed, x.duration, x.rate]));
+            const csvContent = rows.map(r => r.join(",")).join("\n");
+            const link = document.createElement("a");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+            // Now download the file
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "clue_split.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
         (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(() => {
             setTimeout(init, 100);
@@ -4556,7 +4575,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             const output = document.getElementById("output");
             output.scrollTop = output.scrollHeight;
         }, { deep: true, flush: "post" });
-        return { startTime, clueType, currentClueTime, table, capitalizeFirstLetter, formatTime, init, reset };
+        return { startTime, clueType, currentClueTime, table, capitalizeFirstLetter, formatTime, init, reset, exportCSV: exportCsv };
     }
 }).mount("#app");
 
