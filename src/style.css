@@ -11,12 +11,6 @@ table thead th {
     border-bottom: 1px solid #666;
 }
 
-.header {
-    padding: 3px;
-    text-align: center;
-    background-color: #fff2;
-}
-
 .big-time {
     font-size: large;
     font-family: 'Cascadia Mono', 'Consolas', monospace;
@@ -46,13 +40,19 @@ table thead th {
 #app {
     display: grid;
     grid-template-areas:
-        'start'
-        'current'
-        'main'
-        'footer';
-    grid-template-rows: auto auto 1fr auto;
+        'header header'
+        'main main'
+        'export reset';
+    grid-template-rows: auto 1fr auto;
     height: 100%;
     font-family: 'Noto Sans', 'Open Sans', sans-serif;
+}
+
+#header {
+    grid-area: header;
+    padding: 3px;
+    text-align: center;
+    background-color: #fff2;
 }
 
 #output {

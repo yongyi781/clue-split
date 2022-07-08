@@ -4567,6 +4567,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             currentClueTime.value = 0;
         }
         function exportCsv() {
+            var _a;
             const rows = [["#", "Elapsed", "Clue time", "Clues/hr"]].concat(getTable(true).map(x => [x.id.toString(), x.elapsed, x.duration, x.rate]));
             const csvContent = rows.map(r => r.join(",")).join("\n");
             const link = document.createElement("a");
@@ -4574,7 +4575,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             // Now download the file
             const url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
-            link.setAttribute("download", `clue_split_${formatDateTimeFileName(startTime.value)}.csv`);
+            link.setAttribute("download", `clue_split_${(_a = clueType.value) !== null && _a !== void 0 ? _a : "unknown"}_${formatDateTimeFileName(startTime.value)}.csv`);
             link.style.visibility = "hidden";
             document.body.appendChild(link);
             link.click();

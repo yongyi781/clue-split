@@ -161,7 +161,7 @@ createApp({
             // Now download the file
             const url = URL.createObjectURL(blob)
             link.setAttribute("href", url)
-            link.setAttribute("download", `clue_split_${formatDateTimeFileName(startTime.value)}.csv`)
+            link.setAttribute("download", `clue_split_${clueType.value ?? "unknown"}_${formatDateTimeFileName(startTime.value)}.csv`)
             link.style.visibility = "hidden"
             document.body.appendChild(link)
             link.click()
