@@ -4479,6 +4479,18 @@ function formatTime(elapsed, useCsvTimeFormat = false) {
 function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+function formatDateTimeFileName(date) {
+    function p(n) {
+        return (n > 9 ? "" : "0") + n;
+    }
+    const y = date.getFullYear();
+    const M = date.getMonth() + 1;
+    const d = date.getDate();
+    const h = date.getHours();
+    const m = date.getMinutes();
+    const s = date.getSeconds();
+    return `${y}-${p(M)}-${p(d)}_${p(h)}-${p(m)}-${p(s)}`;
+}
 _alt1_base__WEBPACK_IMPORTED_MODULE_0__.identifyApp("appconfig.json");
 const reader = new _alt1_chatbox__WEBPACK_IMPORTED_MODULE_1__["default"]();
 const clueCompleteRegex = /Congratulations! You have now completed [\d,]+ (?<clueType>\w+) treasure trails./;
@@ -4562,7 +4574,7 @@ reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215
             // Now download the file
             const url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
-            link.setAttribute("download", "clue_split.csv");
+            link.setAttribute("download", `clue_split_${formatDateTimeFileName(startTime.value)}.csv`);
             link.style.visibility = "hidden";
             document.body.appendChild(link);
             link.click();

@@ -53,6 +53,19 @@ function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+function formatDateTimeFileName(date: Date) {
+    function p(n: number) {
+        return (n > 9 ? "" : "0") + n
+    }
+    const y = date.getFullYear()
+    const M = date.getMonth() + 1
+    const d = date.getDate()
+    const h = date.getHours()
+    const m = date.getMinutes()
+    const s = date.getSeconds()
+    return `${y}-${p(M)}-${p(d)}_${p(h)}-${p(m)}-${p(s)}`
+}
+
 a1lib.identifyApp("appconfig.json")
 
 const reader = new ChatBoxReader()
@@ -148,7 +161,7 @@ createApp({
             // Now download the file
             const url = URL.createObjectURL(blob)
             link.setAttribute("href", url)
-            link.setAttribute("download", "clue_split.csv")
+            link.setAttribute("download", `clue_split_${formatDateTimeFileName(startTime.value)}.csv`)
             link.style.visibility = "hidden"
             document.body.appendChild(link)
             link.click()
