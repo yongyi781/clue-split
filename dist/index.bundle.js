@@ -4462,8 +4462,8 @@ function regroupChatLines(lines) {
 function chatTimestampToDateTime(timestamp) {
     let now = new Date();
     let result = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, timestamp);
-    if (result > now) {
-        // Timestamp near midnight
+    if (result.getTime() - now.getTime() > 12 * 60 * 60 * 1000) {
+        // Chatbox says 23:something and it's already past midnight. Check for this by testing if result is over 12 hours from now.
         result.setDate(result.getDate() - 1);
     }
     return result;
