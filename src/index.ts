@@ -75,6 +75,8 @@ const clueCompleteColor = [4, 143, 6]
 reader.readargs.colors.push(mixColor(clueCompleteColor))
 // Riftsplitter title
 reader.readargs.colors.push(a1lib.mixColor(215, 243, 136))
+// Hardcore Ironmen titles
+reader.readargs.colors.push(a1lib.mixColor(186, 6, 31))
 
 createApp({
     setup() {
