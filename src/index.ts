@@ -69,7 +69,7 @@ function formatDateTimeFileName(date: Date) {
 a1lib.identifyApp("appconfig.json")
 
 const reader = new ChatBoxReader()
-const clueCompleteRegex = /Congratulations! You have now completed [\d,]+ (?<clueType>\w+) treasure trails./
+const clueCompleteRegex = /Congratulations! You have now completed [\d,.]+ (?<clueType>\w+) treasure trails./
 const clueCompleteColor = [4, 143, 6]
 
 reader.readargs.colors.push(mixColor(clueCompleteColor))
