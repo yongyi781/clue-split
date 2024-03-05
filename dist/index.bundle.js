@@ -4493,7 +4493,7 @@ function formatDateTimeFileName(date) {
 }
 _alt1_base__WEBPACK_IMPORTED_MODULE_0__.identifyApp("appconfig.json");
 const reader = new _alt1_chatbox__WEBPACK_IMPORTED_MODULE_1__["default"]();
-const clueCompleteRegex = /Congratulations! You have now completed [\d,]+ (?<clueType>\w+) treasure trails./;
+const clueCompleteRegex = /Congratulations! You have now completed [\d,.]+ (?<clueType>\w+) treasure trails./;
 const clueCompleteColor = [4, 143, 6];
 reader.readargs.colors.push(mixColor(clueCompleteColor));
 // Riftsplitter title
