@@ -10,4 +10,4 @@ You may also open this link in the Alt1 browser (not a regular browser!): <https
 
 1. Timestamps on in chat - it's how the app tracks clue times.
 2. Interface transparency off, for best chatbox reading accuracy.
-3. 12 point font size in chat, because alt1 is known to misread messages more often on other font sizes.j
+3. 12 point font size in chat, because alt1 is known to misread messages more often on other font sizes.
