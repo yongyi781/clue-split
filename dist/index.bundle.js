@@ -4498,6 +4498,8 @@ const clueCompleteColor = [4, 143, 6];
 reader.readargs.colors.push(mixColor(clueCompleteColor));
 // Riftsplitter title
 reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(215, 243, 136));
+// Hardcore Ironmen titles
+reader.readargs.colors.push(_alt1_base__WEBPACK_IMPORTED_MODULE_0__.mixColor(186, 6, 31));
 (0,vue__WEBPACK_IMPORTED_MODULE_2__.createApp)({
     setup() {
         const startTime = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(new Date());
