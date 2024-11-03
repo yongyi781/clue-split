@@ -1,19 +1,46 @@
-import alt1chain from "@alt1/webpack";
-import * as path from "path";
+import path from "path";
+import webpack from "webpack";
 
-const srcdir = path.resolve(__dirname, "./src/");
-const outdir = path.resolve(__dirname, "./dist/");
+const config: webpack.Configuration = {
+  mode: "production",
+  context: path.resolve(__dirname, "src"),
+  entry: "./index.ts",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    library: { type: "umd", name: "ClueSplit" },
+  },
+  devtool: false,
+  externals: ["sharp", "canvas", "electron/common"],
+  resolve: {
+    extensions: [".wasm", ".tsx", ".ts", ".mjs", ".jsx", ".js"],
+    alias: { vue$: "vue/dist/vue.esm-browser.prod.js" },
+  },
+  module: {
+    // The rules section tells webpack what to do with different file types when you import them from js/ts
+    rules: [
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
+      // type:"asset" means that webpack copies the file and gives you an url to them when you import them from js
+      {
+        test: /\.(png|jpg|jpeg|gif|webp)$/,
+        type: "asset/resource",
+        generator: { filename: "[base]" },
+      },
+      {
+        test: /\.(html|json)$/,
+        type: "asset/resource",
+        generator: { filename: "[base]" },
+      },
+      // file types useful for writing alt1 apps, make sure these two loader come after any other json or png loaders, otherwise they will be ignored
+      {
+        test: /\.data\.png$/,
+        loader: "alt1/imagedata-loader",
+        type: "javascript/auto",
+      },
+      { test: /\.fontmeta.json/, loader: "alt1/font-loader" },
+    ],
+  },
+};
 
-// wrapper around webpack-chain, most stuff you'll need are direct properties,
-// more finetuning can be done at config.chain
-// the wrapper gives decent webpack defaults for everything alt1/typescript/react related
-const config = new alt1chain(srcdir, { ugly: false });
-
-// the name and location of our entry file (the name is used for output and can contain a relative path)
-config.entry("index", "./index.ts");
-
-// where to put all the stuff
-config.output(outdir);
-config.chain.resolve.alias.merge({ vue$: "vue/dist/vue.esm-browser.prod.js" });
-
-export default config.toConfig();
+export default config;

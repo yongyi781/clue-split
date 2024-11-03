@@ -1,14 +1,17 @@
 // alt1 base libs, provides all the commonly used methods for image matching and capture
 // also gives your editor info about the window.alt1 api
-import * as a1lib from "@alt1/base";
-import ChatBoxReader, { ChatLine } from "@alt1/chatbox";
-import { computed, createApp, onMounted, onUpdated, ref, watch } from "vue";
+import * as a1lib from "alt1/base";
+import ChatBoxReader, { ChatLine } from "alt1/chatbox";
+import { computed, createApp, onMounted, ref, watch } from "vue";
 
-// tell webpack to add index.html and appconfig.json to output
-require("!file-loader?name=[name].[ext]!./index.html");
-require("!file-loader?name=[name].[ext]!./appconfig.json");
-require("!file-loader?name=[name].[ext]!./style.css");
-require("!file-loader?name=[name].[ext]!./icon.png");
+// tell webpack that this file relies index.html, appconfig.json and icon.png, this makes webpack
+// add these files to the output directory
+// this works because in /webpack.config.js we told webpack to treat all html, json and imageimports
+// as assets
+import "./index.html";
+import "./appconfig.json";
+import "./style.css";
+import "./icon.png";
 
 // Puts timestampless chat lines with the previous chat line
 function regroupChatLines(lines: ChatLine[]) {

@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "target": "ESNext",
-    "resolveJsonModule": true
+    "resolvePackageJsonExports": true
   }
 }
