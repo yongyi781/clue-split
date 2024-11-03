@@ -1,12 +1,12 @@
 {
-	"appName": "Clue Split",
-	"description": "Alt1 clue split program",
-	"appUrl": "./index.html",
-	"configUrl": "./appconfig.json",
-	"iconUrl": "./icon.png",
-	"defaultWidth": 250,
-	"defaultHeight": 250,
-	"requestHandlers": [],
-	"activators": [],
-	"permissions": "pixel,overlay"
+  "appName": "Clue Split",
+  "description": "Alt1 clue split program",
+  "appUrl": "./index.html",
+  "configUrl": "./appconfig.json",
+  "iconUrl": "./icon.png",
+  "defaultWidth": 250,
+  "defaultHeight": 250,
+  "requestHandlers": [],
+  "activators": [],
+  "permissions": "pixel,overlay"
 }
