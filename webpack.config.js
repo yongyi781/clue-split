@@ -1,7 +1,9 @@
-import path from "path";
-import webpack from "webpack";
+const path = require("path");
 
-const config: webpack.Configuration = {
+/**
+ * @type {import("webpack").Configuration}
+ */
+module.exports = {
   mode: "production",
   context: path.resolve(__dirname, "src"),
   entry: "./index.ts",
@@ -40,7 +42,5 @@ const config: webpack.Configuration = {
       },
       { test: /\.fontmeta.json/, loader: "alt1/font-loader" },
     ],
-  },
+  }
 };
-
-export default config;
